@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .models import Questions,Answer
+from .models import Questions,Category
 
 import random
 
@@ -17,31 +17,48 @@ def test(request):
                 if x==str(y.id):
                     if y.answer.correctAnswer == request.POST[x]:
                         correct=correct+1
+        category=Category.objects.all()
         context={
             'correctAnswer':correct,
-            'examcompleted':True
+            'examcompleted':True,
+            'category':category
         }
         return render(request,'test.html',context)
 
     questions = Questions.objects.all().order_by("-created_at")
-    examquestions=get_random_questions(questions)
+    category=Category.objects.all()
+    examquestions=get_random_questions(questions,5)
     context={
-        'questions':examquestions
+        'questions':examquestions,
+        'category':category
     }
     return render(request,'test.html',context)
 
 def questions(request):
+    category=Category.objects.all()
     questions = Questions.objects.all().order_by("-created_at")
-    questions = get_random_questions(questions)
+    questions = get_random_questions(questions,10)
     context = {
-        'questions': questions
+        'questions': questions,
+        'category':category
     }
     return render(request,'questions.html',context)
 
+def category(request,id):
+    category=Category.objects.all()
+    questions=Questions.objects.filter(category_id=id)
+    categoryaccessed = questions[0].category
+    context={
+        'category':category,
+        'categoryaccessed':categoryaccessed,
+        'questions':questions
+    }
+    return render(request,'categories.html',context)
 
-def get_random_questions(q):
+
+def get_random_questions(q,n):
     questions=[]
-    while len(questions)<5:
+    while len(questions)<n:
         question=random.choice(q)
         if question not in questions:
             questions.append(question)

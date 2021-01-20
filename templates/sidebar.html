@@ -18,18 +18,23 @@
               <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">विभाग</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">ईतिहास</a>
+                {% for cat in category %}
+                  <li>
+                    <a href="/category/{{cat.id}}/">{{cat}}</a>
                 </li>
-                <li>
-                    <a href="#">राजनीतिक</a>
-                </li>
-                <li>
-                    <a href="#">खेलकुद</a>
-                </li>
-                <li>
-                    <a href="#">संसार</a>
-                </li>
+                {% endfor %}
+<!--                <li>-->
+<!--                    <a href="#">ईतिहास</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#">राजनीतिक</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#">खेलकुद</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#">संसार</a>-->
+<!--                </li>-->
               </ul>
               </li>
               <li>

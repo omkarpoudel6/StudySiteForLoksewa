@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}विभाग{% endblock %}
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <strong><li class="breadcrumb-item active" aria-current="page">विभाग : {{categoryaccessed.category}}</li></strong>
+  </ol>
+</nav>
+
+{% for question in questions %}
+    <div class="alert alert-info" role="alert">
+        <strong>{{forloop.counter}}. {{question}}</strong><br>
+          Ans : {{question.answer.correctAnswer}}
+    </div>
+{% endfor %}
+
+{% endblock %}
