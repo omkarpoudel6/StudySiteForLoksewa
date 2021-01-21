@@ -30,7 +30,7 @@ def test(request):
 
     questions = Questions.objects.all().order_by("-created_at")
     category=Category.objects.all()
-    examquestions=get_random_questions(questions,5)
+    examquestions=get_random_questions(questions,10)
     context={
         'questions':examquestions,
         'category':category
