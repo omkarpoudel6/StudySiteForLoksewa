@@ -1,6 +1,9 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+
+from django.core.paginator import Paginator, EmptyPage
+
 from .models import Questions,Category
 
 import random
@@ -38,8 +41,14 @@ def questions(request):
     category=Category.objects.all()
     questions = Questions.objects.all().order_by("-created_at")
     questions = get_random_questions(questions,10)
+    p=Paginator(questions,5)
+    page_num=request.GET.get('page',1)
+    try:
+        paginatedquestions=p.page(page_num)
+    except EmptyPage:
+        paginatedquestions=p.page(1)
     context = {
-        'questions': questions,
+        'questions': paginatedquestions,
         'category':category
     }
     return render(request,'questions.html',context)
