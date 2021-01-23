@@ -13,9 +13,7 @@ def test(request):
     if request.method=="POST":
         correct=0
         questions=Questions.objects.all()
-        print(request.POST)
         for x in request.POST:
-            print("request",x)
             for y in questions:
                 if x==str(y.id):
                     if y.answer.correctAnswer == request.POST[x]:
