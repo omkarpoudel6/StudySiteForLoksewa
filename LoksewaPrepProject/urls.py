@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 # from Loksewa.views import test,questions,category
 from Loksewa import views
-from Users.views import Login,Signup,Logout
+from Users.views import Login,Signup,Logout,Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,9 @@ urlpatterns = [
     path('signup/',Signup,name='signup'),
     path('logout/',Logout,name='logout'),
 
-    path('',views.questions,name='questions'),
+    path('',Home,name='home'),
+
     path('test/',views.test,name='test'),
+    path('questions/',views.questions,name='questions'),
     path('category/<int:id>/',views.category,name='category')
 ]
