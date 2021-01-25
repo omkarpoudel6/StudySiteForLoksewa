@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path
 # from Loksewa.views import test,questions,category
 from Loksewa import views
-from Users.views import Login,Signup
+from Users.views import Login,Signup,Logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('login/',Login,name='login'),
     path('signup/',Signup,name='signup'),
+    path('logout/',Logout,name='logout'),
 
     path('',views.questions,name='questions'),
     path('test/',views.test,name='test'),

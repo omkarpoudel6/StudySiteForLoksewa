@@ -30,6 +30,14 @@ class UserCreationForm(forms.ModelForm):
             )
         return password2
 
+    def clean_email(self):
+        email=self.cleaned_data.get('email')
+        if User.objects.filter(email=email):
+            raise forms.ValidationError(
+                self.error_messages['email already used'],
+                code='email already used',)
+        return email
+
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])

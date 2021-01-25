@@ -1,14 +1,17 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage
 
 from .models import Questions,Category
 
+
 import random
 
+
 # Create your views here.
+@login_required(login_url='/login')
 def test(request):
     if request.method=="POST":
         correct=0
@@ -35,6 +38,7 @@ def test(request):
     }
     return render(request,'test.html',context)
 
+@login_required(login_url='/login')
 def questions(request):
     category=Category.objects.all()
     questions = Questions.objects.all().order_by("-created_at")
@@ -51,6 +55,7 @@ def questions(request):
     }
     return render(request,'questions.html',context)
 
+@login_required(login_url='/login')
 def category(request,id):
     category=Category.objects.all()
     questions=Questions.objects.filter(category_id=id)
