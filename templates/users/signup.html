@@ -43,6 +43,12 @@
 						Sign Up
 					</span>
 
+					{% if errormessage %}
+						<div class="alert alert-warning" role="alert">
+						  {{errormessage}}
+						</div>
+					{% endif %}
+
                     <div class="wrap-input100 validate-input" data-validate = "Enter Email">
 						<input class="input100" type="email" name="email" placeholder="Email">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>

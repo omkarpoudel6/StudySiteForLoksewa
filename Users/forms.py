@@ -35,7 +35,8 @@ class UserCreationForm(forms.ModelForm):
         if User.objects.filter(email=email):
             raise forms.ValidationError(
                 self.error_messages['email already used'],
-                code='email already used',)
+                code='email already used',
+            )
         return email
 
     def save(self, commit=True):
