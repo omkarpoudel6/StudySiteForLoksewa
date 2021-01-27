@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class UserCreationForm(forms.ModelForm):
@@ -30,14 +31,14 @@ class UserCreationForm(forms.ModelForm):
             )
         return password2
 
-    def clean_email(self):
-        email=self.cleaned_data.get('email')
-        if User.objects.filter(email=email):
-            raise forms.ValidationError(
-                self.error_messages['email already used'],
-                code='email already used',
-            )
-        return email
+    # def clean_email(self):
+    #     email=self.cleaned_data.get('email')
+    #     if User.objects.filter(email=email):
+    #         raise forms.ValidationError(
+    #             self.error_messages['email already used'],
+    #             code='email already used',
+    #         )
+    #     return email
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
@@ -45,3 +46,20 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+# class RegistrationForm(UserCreationForm):
+#     email=forms.EmailField(required=True)
+#
+#     class Meta:
+#         model=User
+#         fields=('username','email','password1','password2')
+#
+#         def clean_email(self):
+#             email=self.cleaned_data['email']
+#             try:
+#                 User.objects.get(email=email)
+#                 raise forms.ValidationError("Email already exists")
+#             except User.MultipleObjectsReturned:
+#                 raise forms.ValidationError("Email already exists")
+#             except User.DoesNotExist:
+#                 pass
