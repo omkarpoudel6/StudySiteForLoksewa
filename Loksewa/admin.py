@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Category,Questions,Answer
+from .models import Category,Questions,Answer,Quiz
 
 # Register your models here.
 # admin.site.register(Category)
 # admin.site.register(Questions)
 # admin.site.register(Answer)
+admin.site.register(Quiz)
 
 
 @admin.register(Category)

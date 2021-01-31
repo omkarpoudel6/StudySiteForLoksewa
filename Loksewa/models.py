@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -29,3 +30,19 @@ class Answer(models.Model):
 
     def __str__(self):
         return f"{self.correctAnswer}"
+
+class Quiz(models.Model):
+
+    choice=(
+        ('pass','pass'),
+        ('fail','fail')
+    )
+
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    score=models.CharField(max_length=3,blank=False)
+    # status=models.CharField(max_length=4,choices=choice,blank=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}-{self.score}"

@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage
 
-from .models import Questions,Category
+from .models import Questions,Category,Quiz
 
 
 import random
@@ -21,6 +21,8 @@ def test(request):
                 if x==str(y.id):
                     if y.answer.correctAnswer == request.POST[x]:
                         correct=correct+1
+        quiz=Quiz(user=request.user,score=correct)
+        quiz.save()
         category=Category.objects.all()
         context={
             'correctAnswer':correct,
