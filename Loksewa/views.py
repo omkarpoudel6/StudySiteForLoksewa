@@ -33,7 +33,7 @@ def test(request):
 
     questions = Questions.objects.all().order_by("-created_at")
     category=Category.objects.all()
-    examquestions=get_random_questions(questions,10)
+    examquestions=get_random_questions(questions,20)
     context={
         'questions':examquestions,
         'category':category
@@ -44,7 +44,7 @@ def test(request):
 def questions(request):
     category=Category.objects.all()
     questions = Questions.objects.all().order_by("-created_at")
-    questions = get_random_questions(questions,10)
+    questions = get_random_questions(questions,20)
     p=Paginator(questions,5)
     page_num=request.GET.get('page',1)
     try:
