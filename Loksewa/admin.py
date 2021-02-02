@@ -6,11 +6,11 @@ from .models import Category,Questions,Answer,Quiz
 # admin.site.register(Questions)
 # admin.site.register(Answer)
 admin.site.register(Quiz)
+admin.site.register(Category)
 
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    readonly_fields = ['category',]
+# @admin.register(Category)
+# class CategoryAdmin(admin.ModelAdmin):
+#     readonly_fields = ['category',]
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):

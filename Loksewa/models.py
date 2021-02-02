@@ -22,10 +22,10 @@ class Questions(models.Model):
 
 class Answer(models.Model):
     question = models.OneToOneField(Questions,on_delete=models.CASCADE)
-    answer1 = models.CharField(max_length=50, blank=False, unique=True)
-    answer2 = models.CharField(max_length=50, blank=False, unique=True)
-    answer3 = models.CharField(max_length=50, blank=False, unique=True)
-    answer4 = models.CharField(max_length=50, blank=False, unique=True)
+    answer1 = models.CharField(max_length=50, blank=False)
+    answer2 = models.CharField(max_length=50, blank=False)
+    answer3 = models.CharField(max_length=50, blank=False)
+    answer4 = models.CharField(max_length=50, blank=False)
     correctAnswer=models.CharField(max_length=50,blank=False)
 
     def __str__(self):
