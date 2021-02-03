@@ -45,7 +45,7 @@ def questions(request):
     category=Category.objects.all()
     questions = Questions.objects.all().order_by("-created_at")
     questions = get_random_questions(questions,20)
-    p=Paginator(questions,5)
+    p=Paginator(questions,10)
     page_num=request.GET.get('page',1)
     try:
         paginatedquestions=p.page(page_num)
