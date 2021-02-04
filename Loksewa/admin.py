@@ -25,3 +25,4 @@ class QuestionsAdmin(admin.ModelAdmin):
     inlines=[
         AnswerInline,
     ]
+    filter
