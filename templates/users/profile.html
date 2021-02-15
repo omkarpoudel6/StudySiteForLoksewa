@@ -8,6 +8,14 @@
       </ol>
     </nav>
 
+    {% if messages %}
+      <div class="alert alert-success" role="alert">
+          {% for message in messages %}
+            {{message}}
+          {% endfor %}
+      </div>
+    {% endif %}
+
     <div class="main-body">
       <div class="row gutters-sm">
         <div class="col-md-5">
@@ -35,7 +43,8 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                          <form>
+                          <form method="post" action="{% url 'updateprofile' %}">
+                            {% csrf_token %}
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="firstname">First Name</label>
@@ -67,11 +76,12 @@
                                 <input type="text" class="form-control" id="image" name="image" placeholder="@Image">
                               </div>
                             </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
                           </form>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
                       </div>
                     </div>
                   </div>

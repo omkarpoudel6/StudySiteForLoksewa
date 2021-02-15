@@ -6,7 +6,7 @@ from . import settings
 
 from Loksewa import views
 from django.contrib.staticfiles.urls import static
-from Users.views import Login,Signup,Logout,Home,activate
+from Users.views import Login,Signup,Logout,Home,activate,updateProfile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,7 +16,8 @@ urlpatterns = [
     path('logout/',Logout,name='logout'),
 
     path('',Home,name='home'),
-    path('user/activate/',activate,name='activate'),
+    path('user/activate/', activate,name='activate'),
+    path('user/update/', updateProfile,name='updateprofile'),
 
     path('test/',views.test,name='test'),
     path('questions/',views.questions,name='questions'),

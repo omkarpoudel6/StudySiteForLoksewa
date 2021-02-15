@@ -25,4 +25,4 @@ class QuestionsAdmin(admin.ModelAdmin):
     inlines=[
         AnswerInline,
     ]
-    filter
+    list_filter = ('category',)
