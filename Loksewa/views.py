@@ -8,6 +8,7 @@ from .models import Questions,Category,Quiz
 
 
 import random
+from datetime import date
 
 
 # Create your views here.
