@@ -154,26 +154,20 @@
         <div class="col-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="text-center">Today's Top Scorers</h5>
+              <h5 class="text-center">Yesterday's Top Scorers</h5>
               <div class="row">
                 <div class="col-12">
                   <div class="card">
                     <div class="card-body">
                       <table class="table table-striped">
-                        <tbody>
+                        <body>
+                        {% for scorer in top_scorer %}
                           <tr>
-                            <td>omkar77</td>
-                            <td>10</td>
+                            <td>{{scorer.user.username}}</td>
+                            <td>{{scorer.score}}</td>
                           </tr>
-                          <tr>
-                            <td>halamadrid</td>
-                            <td>10</td>
-                          </tr>
-                          <tr>
-                            <td>omkar77</td>
-                            <td>10</td>
-                          </tr>
-                        </tbody>
+                        {% endfor %}
+                        </body>
                       </table>
                     </div>
                   </div>
